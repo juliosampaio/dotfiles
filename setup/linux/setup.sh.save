@@ -1,0 +1,5 @@
+echo "Starting linux setup"
+
+$SETUP_HOME=$HOME/.dotfiles/setup/linux/
+special_echo
+./$SETUP_HOME/zsh.sh
