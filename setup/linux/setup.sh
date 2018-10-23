@@ -16,3 +16,5 @@ fi
 #---------------------------------------
 echo "Installing spaceship-prompt"
 $SETUP_HOME/spaceship.sh
+echo "Installing NVM"
+$SETUP_HOME/nvm.sh
