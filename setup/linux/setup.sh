@@ -16,5 +16,13 @@ fi
 #---------------------------------------
 echo "Installing spaceship-prompt"
 $SETUP_HOME/spaceship.sh
+#----------------------------------------
+#              NVM
+#---------------------------------------
 echo "Installing NVM"
 $SETUP_HOME/nvm.sh
+#----------------------------------------
+#              TMUX
+#---------------------------------------
+echo "Installing tmux"
+$SETUP_HOME/tmux.sh
