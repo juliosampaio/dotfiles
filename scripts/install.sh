@@ -7,5 +7,6 @@ export DOTFILES_ROOT_DIR
 export DOTFILES_SCRIPT_DIR
 
 "$DOTFILES_SCRIPT_DIR/homebrew.sh"
+"$DOTFILES_SCRIPT_DIR/oh-my-zsh.sh"
 "$DOTFILES_SCRIPT_DIR/zshenv.sh"
 "$DOTFILES_SCRIPT_DIR/stow.sh"
