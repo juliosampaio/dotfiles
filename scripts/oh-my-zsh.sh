@@ -1,5 +1,11 @@
 echo ">> Installing oh-my-zsh"
 
+#if the folder $HOME/.oh-my-zsh already exists, let's stop the script
+if [ -d "$HOME/.oh-my-zsh" ]; then
+    echo ">> oh-my-zsh is already installed. Skipping..."
+    exit 0
+fi
+
 if [ -f "$HOME/.zshenv" ]; then
     rm "$HOME/.zshenv"
 fi
