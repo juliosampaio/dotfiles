@@ -1,7 +1,7 @@
 local wezterm = require 'wezterm'
 
 return {
-	color_scheme = 'Dracula',
+	color_scheme = 'Dracula (Official)',
 	font_size = 16,
 	font = wezterm.font('JetBrains Mono'),	
 	window_background_image = os.getenv( "HOME" ) .. '/.config/assets/wezterm-background-image.gif',
