@@ -1,0 +1,7 @@
+--ignore=.git
+--ignore=.stowrc
+--ignore=homebrew
+--ignore=README.md
+--ignore=scripts
+--target=~/.config
+--adopt
