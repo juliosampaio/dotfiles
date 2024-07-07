@@ -1,4 +1,6 @@
 starship
 stow
+tmux
+tpm
 wezterm
 zsh

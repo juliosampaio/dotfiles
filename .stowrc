@@ -3,5 +3,6 @@
 --ignore=homebrew
 --ignore=README.md
 --ignore=scripts
+--ignore=tmux/plugins
 --target=~/.config
 --adopt
