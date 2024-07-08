@@ -1,3 +1,4 @@
+fzf
 starship
 stow
 tmux
