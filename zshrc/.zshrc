@@ -23,6 +23,8 @@ alias gfa="alias_info git fetch --all --tags --force"
 alias glog="alias_info git log --graph --topo-order --pretty='%w(100,0,6)%C(yellow)%h%C(bold)%C(black)%d %C(cyan)%ar %C(green)%an%n%C(bold)%C(white)%s %N' --abbrev-commit"
 alias gst="alias_info git status"
 alias gcam="alias_info git commit --amend --no-edit"
+alias gss="alias_info git stash save -u"
+alias gsp="alias_info git stash pop"
 #-----------------------------#
 # Machine specific zshrc      #
 #-----------------------------#
