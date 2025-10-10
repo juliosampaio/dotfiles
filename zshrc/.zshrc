@@ -1,4 +1,15 @@
 source ~/.config/zshrc/.zshrc-helpers
+
+#-----------------------------#
+# Zsh Environment             #
+#-----------------------------#
+export PATH="$HOME/.local/bin:$PATH"
+
+
+#-----------------------------#
+# Oh-My-Zsh                   #
+#-----------------------------#
+
 #-----------------------------#
 # oh-my-zsh                   #
 #-----------------------------#
@@ -41,3 +52,13 @@ alias grst="git_reset_branch"
 if [ -f "$HOME/.zshrc-local" ]; then
     source "$HOME/.zshrc-local"
 fi
+# pnpm
+export PNPM_HOME="$HOME/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
+# bun completions
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
