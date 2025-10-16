@@ -14,11 +14,20 @@ if command -v brew >/dev/null 2>&1; then
   echo ">> Homebrew installation was successful."
   echo ">> Updating Homebrew..."
   brew update
-  brew upgrade
   brew cleanup
-  brew doctor    
+  brew doctor
   echo ">> Installing packages..."
-  xargs brew install < $DOTFILES_ROOT_DIR/homebrew/leaves.txt
+  while IFS= read -r package || [ -n "$package" ]; do
+    # Skip empty lines and comments
+    [[ -z "$package" || "$package" =~ ^[[:space:]]*# ]] && continue
+
+    if brew list "$package" &>/dev/null; then
+      echo "   ✓ $package already installed"
+    else
+      echo "   → Installing $package..."
+      brew install "$package"
+    fi
+  done < "$DOTFILES_ROOT_DIR/homebrew/leaves.txt"
   # Optionally, add Homebrew to PATH in .bash_profile or .zshrc if not automatically done by the installer
   # echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
   # eval "$(/opt/homebrew/bin/brew shellenv)"

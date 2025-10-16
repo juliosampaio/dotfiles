@@ -5,3 +5,4 @@ tmux
 tpm
 wezterm
 zsh
+obsidian
