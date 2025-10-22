@@ -36,6 +36,8 @@ alias gst="alias_info git status"
 alias gcam="alias_info git commit --amend --no-edit"
 alias gss="alias_info git stash save -u"
 alias gsp="alias_info git stash pop"
+alias gca="alias_info git commit --amend --no-edit --no-verify"
+alias gfp="alias_info git push origin \$(git branch --show-current) --force-with-lease"
 # update the branch with the latest changes from the remote
 # usage: grst <branch_name>
 git_reset_branch() {
