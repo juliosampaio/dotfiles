@@ -2,11 +2,12 @@
 # Usage: alias_info <command>
 # Description: Prints the command in italic and gray before executing it.
 # Parameters:
-#   command: The command to be executed.
+#   command: The command to be executed (can be a compound command with &&, ||, etc.)
 alias_info() {
-    command_to_run=$@
+    # Join all arguments preserving the original command structure
+    command_to_run="$*"
     # Print the command in italic and gray
     echo -e "\e[3m\e[90m$command_to_run\e[0m"
     # Execute the command
-    eval $command_to_run
+    eval "$command_to_run"
 }
