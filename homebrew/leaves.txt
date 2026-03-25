@@ -6,3 +6,4 @@ tpm
 wezterm
 zsh
 obsidian
+zellij
