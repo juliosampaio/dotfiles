@@ -38,6 +38,7 @@ alias gcam="alias_info git commit --amend --no-edit"
 alias gss="alias_info git stash save -u"
 alias gsp="alias_info git stash pop"
 alias gca="alias_info git commit --amend --no-edit --no-verify"
+alias gp="alias_info git push origin \$(git branch --show-current)"
 alias gfp="alias_info git push origin \$(git branch --show-current) --force-with-lease"
 alias gcl="alias_info 'git checkout . && git clean -fd'"
 # update the branch with the latest changes from the remote
