@@ -7,3 +7,4 @@ wezterm
 zsh
 obsidian
 zellij
+zed

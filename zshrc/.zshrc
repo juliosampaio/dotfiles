@@ -29,6 +29,8 @@ source <(fzf --zsh)
 #-----------------------------#
 # Aliases                     #
 #-----------------------------#
+# Nix
+alias load-nix='. /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
 # Git
 alias gco="alias_info git checkout"
 alias gfa="alias_info git fetch --all --tags --force"
@@ -159,3 +161,13 @@ esac
 
 # bun completions
 [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
+# opencode
+export PATH="/Users/julio.sampaio/.bun/bin:$PATH"
+# ollama
+export OLLAMA_KEEP_ALIVE="-1"
+
+source ${DEVELOPER_TOOLBOX_HOME}/zshrc/aws.zsh
+source ${DEVELOPER_TOOLBOX_HOME}/zshrc/kubectl.zsh
+export EMMA_TEAM_NAME=offline
+export DEVELOPER_TOOLBOX_HOME=/Users/julio.sampaio/.developer-toolbox
+source ${DEVELOPER_TOOLBOX_HOME}/zshrc/devx.zsh
