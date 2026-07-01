@@ -4,7 +4,7 @@ source ~/.config/zshrc/.zshrc-helpers
 # Zsh Environment             #
 #-----------------------------#
 export PATH="$HOME/.local/bin:$PATH"
-export DEFAULT_EDITOR="cursor"
+export DEFAULT_EDITOR="zed"
 
 
 #-----------------------------#
