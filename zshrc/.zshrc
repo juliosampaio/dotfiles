@@ -121,13 +121,17 @@ git_worktree_manager() {
                 local worktrees_dir="$HOME/Workspace/worktrees/$project_name"
                 if [ -d "$worktrees_dir" ]; then
                     echo "Removing all worktrees for project: $project_name"
-                    for worktree_dir in "$worktrees_dir"/*/; do
-                        if [ -d "$worktree_dir" ]; then
-                            local worktree_name=$(basename "$worktree_dir")
-                            echo "Removing worktree: $worktree_name"
-                            alias_info git worktree remove "$worktree_dir"
-                        fi
+                    # Ask git for the real worktree paths instead of globbing the
+                    # filesystem: branch names with slashes (e.g. user/ticket-123)
+                    # nest worktrees two+ levels deep, which a one-level glob misses.
+                    git worktree list --porcelain | awk '/^worktree /{print $2}' | while read -r wt_path; do
+                        [[ "$wt_path" == "$worktrees_dir"/* ]] || continue
+                        echo "Removing worktree: $wt_path"
+                        alias_info git worktree remove "$wt_path"
                     done
+                    # Clean up now-empty leftover container dirs (e.g. the "user"
+                    # part of a "user/ticket-123" branch-derived path)
+                    find "$worktrees_dir" -mindepth 1 -type d -empty -delete 2>/dev/null
                     echo "All worktrees removed for project: $project_name"
                 else
                     echo "No worktrees found for project: $project_name"
