@@ -151,18 +151,28 @@ git_worktree_manager() {
 alias gwt="git_worktree_manager"
 
 # Scaffolding commands
-# usage: new emma-task <JIRA-TICKET> <branch-description>
+# usage: new emma-task <JIRA-TICKET> <branch-description> [--no-editor]
 new_manager() {
     local subcommand=$1
 
     case "$subcommand" in
         emma-task)
-            local jira_ticket=$2
-            local branch_description=$3
+            local no_editor=false
+            local positional=()
+            local arg
+            for arg in "${@:2}"; do
+                if [[ "$arg" == "--no-editor" ]]; then
+                    no_editor=true
+                else
+                    positional+=("$arg")
+                fi
+            done
+            local jira_ticket=${positional[1]}
+            local branch_description=${positional[2]}
 
             if [ -z "$jira_ticket" ] || [ -z "$branch_description" ]; then
                 echo "Error: Please provide a JIRA ticket and a branch description"
-                echo "Usage: new emma-task <JIRA-TICKET> <branch-description>"
+                echo "Usage: new emma-task <JIRA-TICKET> <branch-description> [--no-editor]"
                 return 1
             fi
 
@@ -172,13 +182,13 @@ new_manager() {
 
             local branch_name="juliosampaio/${jira_ticket}_${branch_description}"
             alias_info git checkout -b "$branch_name"
-            if [ $? -eq 0 ]; then
+            if [ $? -eq 0 ] && [ "$no_editor" = false ]; then
                 $DEFAULT_EDITOR . &>/dev/null &
             fi
             ;;
         *)
             echo "Error: Unknown subcommand '$subcommand'"
-            echo "Usage: new emma-task <JIRA-TICKET> <branch-description>"
+            echo "Usage: new emma-task <JIRA-TICKET> <branch-description> [--no-editor]"
             return 1
             ;;
     esac
