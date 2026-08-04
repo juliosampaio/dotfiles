@@ -151,7 +151,9 @@ git_worktree_manager() {
 alias gwt="git_worktree_manager"
 
 # Scaffolding commands
-# usage: new emma-task <JIRA-TICKET> <branch-description> [--no-editor]
+# usage: new emma-task <JIRA-TICKET> <branch-description...> [--no-editor]
+# branch-description can be multiple words, unquoted; they'll be joined and
+# snake_cased, e.g. "new emma-task OOT-2868 display shipping address list"
 new_manager() {
     local subcommand=$1
 
@@ -168,7 +170,9 @@ new_manager() {
                 fi
             done
             local jira_ticket=${positional[1]}
-            local branch_description=${positional[2]}
+            # join every remaining word into the description, so the caller
+            # doesn't need to quote a multi-word description
+            local branch_description="${positional[2,-1]}"
 
             if [ -z "$jira_ticket" ] || [ -z "$branch_description" ]; then
                 echo "Error: Please provide a JIRA ticket and a branch description"
