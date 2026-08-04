@@ -4,7 +4,7 @@ source ~/.config/zshrc/.zshrc-helpers
 # Zsh Environment             #
 #-----------------------------#
 export PATH="$HOME/.local/bin:$PATH"
-export DEFAULT_EDITOR="zed"
+export DEFAULT_EDITOR="code"
 
 
 #-----------------------------#
@@ -149,6 +149,38 @@ git_worktree_manager() {
     esac
 }
 alias gwt="git_worktree_manager"
+
+# Scaffolding commands
+# usage: new emma-task <JIRA-TICKET> <branch-description>
+new_manager() {
+    local subcommand=$1
+
+    case "$subcommand" in
+        emma-task)
+            local jira_ticket=$2
+            local branch_description=$3
+
+            if [ -z "$jira_ticket" ] || [ -z "$branch_description" ]; then
+                echo "Error: Please provide a JIRA ticket and a branch description"
+                echo "Usage: new emma-task <JIRA-TICKET> <branch-description>"
+                return 1
+            fi
+
+            # snake_case: lowercase, collapse any run of non-alphanumerics to a
+            # single underscore, and trim leading/trailing underscores
+            branch_description=$(echo "$branch_description" | tr '[:upper:]' '[:lower:]' | sed -E 's/[^a-z0-9]+/_/g; s/^_+|_+$//g')
+
+            local branch_name="juliosampaio/${jira_ticket}_${branch_description}"
+            alias_info git checkout -b "$branch_name"
+            ;;
+        *)
+            echo "Error: Unknown subcommand '$subcommand'"
+            echo "Usage: new emma-task <JIRA-TICKET> <branch-description>"
+            return 1
+            ;;
+    esac
+}
+alias new="new_manager"
 #-----------------------------#
 # Machine specific zshrc      #
 #-----------------------------#
