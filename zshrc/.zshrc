@@ -172,6 +172,9 @@ new_manager() {
 
             local branch_name="juliosampaio/${jira_ticket}_${branch_description}"
             alias_info git checkout -b "$branch_name"
+            if [ $? -eq 0 ]; then
+                $DEFAULT_EDITOR . &>/dev/null &
+            fi
             ;;
         *)
             echo "Error: Unknown subcommand '$subcommand'"
